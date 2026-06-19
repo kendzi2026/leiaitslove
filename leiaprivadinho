@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>leia_itslove | Conteúdo VIP</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    background:#f4f6f9; 
+    color:#222; 
+}
+
+/* Foto de Capa Otimizada para Mobile */
+.cover-banner {
+    width: 100%;
+    height: 200px;
+    background-image: url('https://i.ibb.co/MDpJx05M/Captura-de-ecr-2026-06-19-145132.png');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.container{
+    max-width:650px; 
+    margin:auto;
+    padding: 0 12px 20px 12px; 
+}
+
+/* Perfil Compacto e Focado */
+.profile{
+    background:#ffffff; 
+    border: 1px solid #e1e8ed;
+    border-radius:24px;
+    padding: 20px 15px; 
+    text-align:center;
+    margin-bottom:16px;
+    margin-top: -50px; 
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06); 
+    z-index: 10;
+}
+
+.avatar{
+    width:100px; 
+    height:100px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#0066ff,#00d4ff); 
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow: hidden;
+    border: 4px solid #fff; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile h1{
+    margin-top:12px;
+    font-size:24px;
+    color: #0044cc; 
+    letter-spacing: -0.5px;
+}
+
+.profile p{
+    color:#666;
+    margin-top:4px;
+    font-size: 14px;
+}
+
+/* Status de Engajamento Rápido */
+.stats{
+    display:flex;
+    justify-content:space-between;
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 12px 8px;
+    margin: 18px 0;
+}
+
+.stat {
+    flex: 1;
+    text-align: center;
+}
+
+.stat h2{
+    color:#0066ff; 
+    font-size: 18px;
+}
+
+.stat p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.online{
+    color:#28a745; 
+    margin-bottom:15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.description{
+    line-height: 1.6;
+    color:#333;
+    font-size: 15px;
+    text-align: left; 
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 16px;
+    border-left: 4px solid #0066ff;
+}
+
+.badges{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:16px;
+}
+
+.badge{
+    background:#e6f0ff; 
+    color: #0055ff; 
+    padding:8px 14px;
+    border-radius:30px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Oferta Urgente com Alto Contraste */
+.offer{
+    margin-top:16px;
+    background: linear-gradient(135deg, #0055ff, #0033aa); 
+    color: white;
+    padding:14px;
+    border-radius:16px;
+    font-weight:bold;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,85,255,0.25);
+}
+
+/* Feed de Posts Otimizado */
+.post{
+    background:#ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius:24px;
+    padding:16px;
+    margin-bottom:16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.post-header{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom:12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.post-header strong {
+    color: #0044cc;
+    font-size: 15px;
+}
+
+/* Container de Conteúdo Bloqueado */
+.locked{
+    position: relative;
+    height:260px; 
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow: hidden;
+    border: 1px solid #e1e8ed;
+}
+
+.locked-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px); 
+    transform: scale(1.1); 
+    z-index: 1;
+}
+
+.post-bg-1 {
+    background-image: url('https://i.ibb.co/vCQwJH9b/Captura-de-ecr-2026-06-19-150230.png');
+}
+
+.post-bg-2 {
+    background-image: url('https://i.ibb.co/7JFsp4gH/Captura-de-ecr-2026-06-19-151134.png');
+}
+
+.locked-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.92); 
+    padding: 20px;
+    width: 85%;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    backdrop-filter: blur(4px);
+}
+
+.locked h3{
+    margin-bottom:4px;
+    color: #0044cc;
+    font-size: 18px;
+}
+
+.locked p {
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.unlock{
+    background:#0066ff;
+    border:none;
+    color:white;
+    padding:12px 0;
+    width: 100%; 
+    border-radius:30px;
+    margin-top:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,102,255,0.3);
+}
+
+.post-footer{
+    margin-top:12px;
+    color:#666;
+    display:flex;
+    gap:24px;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 4px;
+}
+
+/* Prova Social Clássica */
+.section-title{
+    margin: 30px 0 16px;
+    font-size:22px;
+    color: #0044cc;
+    letter-spacing: -0.5px;
+}
+
+.review{
+    background:#ffffff;
+    border: 1px solid #e1e8ed;
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.review p{
+    color:#444;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.review span{
+    color:#0066ff;
+    font-weight: bold;
+    font-size: 13px;
+    display: block;
+    margin-top: 6px;
+}
+
+/* Planos */
+.plans{
+    display: flex;
+    flex-direction: column; 
+    gap:16px;
+    margin-top:16px;
+}
+
+.plan{
+    background:#ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius:24px;
+    padding:24px 20px;
+    text-align:center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    position: relative;
+}
+
+.plan.featured-plan {
+    border: 2px solid #0066ff;
+    box-shadow: 0 8px 24px rgba(0,102,255,0.1);
+}
+
+.plan h2{
+    margin-bottom:12px;
+    color: #0044cc;
+    font-size: 24px;
+}
+
+.plan p {
+    font-size: 14px;
+}
+
+.old-price{
+    text-decoration:line-through;
+    color:#999;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.price{
+    font-size:42px;
+    color:#0066ff;
+    font-weight:bold;
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.popular{
+    background:#0066ff;
+    color: white;
+    padding:6px 16px;
+    border-radius:30px;
+    display:inline-block;
+    margin-bottom:16px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Links dos Botões de Assinatura */
+.subscribe-btn {
+    display: block;
+    margin-top:16px;
+    background:#0066ff;
+    color:#fff;
+    padding:16px 20px;
+    border-radius:30px;
+    font-weight: bold;
+    font-size: 18px; 
+    width: 100%;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,102,255,0.25);
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.features{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:30px 0 20px;
+}
+
+.feature{
+    background:#ffffff;
+    border: 1px solid #e1e8ed;
+    padding:10px 14px;
+    border-radius:12px;
+    color: #333;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.footer{
+    text-align:center;
+    color:#777;
+    margin:30px 0 10px;
+    font-size: 13px;
+}
+
+@media(max-width:360px){
+    .price{ font-size: 36px; }
+    .cover-banner { height: 160px; }
+    .avatar { width: 90px; height: 90px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cover-banner"></div>
+
+<div class="container">
+
+    <div class="profile">
+        <div class="avatar">
+            <img src="https://i.ibb.co/BKgzXXL5/descarregar.png" alt="leia_itslove">
+        </div>
+
+        <h1>leia_itslove</h1>
+        <p>TOP 0.5% • @leia_itslove • Maputo 🇲🇿</p>
+
+        <div class="stats">
+            <div class="stat">
+                <h2>354</h2>
+                <p>📷 Fotos</p>
+            </div>
+            <div class="stat">
+                <h2>148</h2>
+                <p>📸 Vídeos</p>
+            </div>
+            <div class="stat">
+                <h2>20.2K</h2>
+                <p>❤️ Likes</p>
+            </div>
+        </div>
+
+        <p class="online">🟢 Disponível agora — respondendo rápido</p>
+
+        <div class="description">
+            🔥 Conteúdo exclusivo +18 que você nunca viu<br>
+            🔒 100% privado — não vai para redes sociais<br>
+            👑 Atualizações DIÁRIAS + área VIP<br>
+            💌 Mensagens privadas para subscritores
+        </div>
+
+        <div class="badges">
+            <div class="badge">Pagamento seguro</div>
+            <div class="badge">Acesso imediato</div>
+            <div class="badge">100% anónimo</div>
+        </div>
+
+        <div class="offer">
+            ⚡ OFERTA LIMITADA — Apenas hoje<br>
+            Restam poucas vagas no plano VIP
+        </div>
+    </div>
+
+    <!-- Post 1 -->
+    <div class="post">
+        <div class="post-header">
+            <strong>leia_itslove</strong>
+            <span>Conteúdo VIP 🔒 • 5h</span>
+        </div>
+
+        <div class="locked">
+            <div class="locked-bg post-bg-1"></div>
+            <div class="locked-content">
+                <h3>Conteúdo bloqueado</h3>
+                <p>Conteúdo VIP +18</p>
+                <button class="unlock" onclick="document.getElementById('plans-section').scrollIntoView({behavior: 'smooth'});">🔓 Desbloqueie agora</button>
+            </div>
+        </div>
+
+        <div class="post-footer">
+            <span>❤️ 2.1K</span>
+            <span>💬 184</span>
+        </div>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="post">
+        <div class="post-header">
+            <strong>leia_itslove</strong>
+            <span>Conteúdo VIP 🔒 • 2h</span>
+        </div>
+
+        <div class="locked">
+            <div class="locked-bg post-bg-2"></div>
+            <div class="locked-content">
+                <h3>Conteúdo bloqueado</h3>
+                <p>Conteúdo VIP +18</p>
+                <button class="unlock" onclick="document.getElementById('plans-section').scrollIntoView({behavior: 'smooth'});">🔓 Desbloqueie agora</button>
+            </div>
+        </div>
+
+        <div class="post-footer">
+            <span>❤️ 3.4K</span>
+            <span>💬 276</span>
+        </div>
+    </div>
+
+    <h2 class="section-title">⭐ O que dizem os subscritores</h2>
+
+    <div class="review">
+        <p>"Vale cada metical! Conteúdo exclusivo de verdade e ela responde mesmo as mensagens 🔥"</p>
+        <span>— Carlos M.</span>
+    </div>
+
+    <div class="review">
+        <p>"Melhor investimento. Atualizações diárias e qualidade incrível 👑"</p>
+        <span>— João P.</span>
+    </div>
+
+    <div id="plans-section">
+        <h2 class="section-title">👑 Desbloqueie tudo agora</h2>
+        <p style="color: #555; font-size: 14px; margin-bottom: 10px;">Acesso vitalício ao período pago • Cancele quando quiser</p>
+    </div>
+
+    <div class="plans">
+
+        <!-- Plano VIP Padrão - 199 MT -->
+        <div class="plan">
+            <h2>VIP</h2>
+            <p style="color: #666;">Acesso completo</p>
+            <p class="old-price">299 MT</p>
+            <div class="price">199 MT</div>
+            <a href="https://pay.zenofy.io/p/6a0340fffd66df4e5df09bc9" class="subscribe-btn">Assinar Agora</a>
+        </div>
+
+        <!-- Plano VVIP Destacado - 297 MT -->
+        <div class="plan featured-plan">
+            <div class="popular">⭐ MAIS POPULAR • POUPE 50%</div>
+            <h2>VVIP</h2>
+            <p style="color: #666;">+ Mensagens privadas</p>
+            <p style="color: #666;">+ Conteúdo exclusivo +18</p>
+            <p class="old-price">597 MT</p>
+            <div class="price">297 MT</div>
+            <a href="https://pay.zenofy.io/p/6a0342e8fd66df4e5df09bce" class="subscribe-btn" style="background: linear-gradient(45deg, #0066ff, #0044cc);">Assinar Agora</a>
+        </div>
+
+    </div>
+
+    <div class="features">
+        <div class="feature">Pagamento seguro</div>
+        <div class="feature">Acesso imediato</div>
+        <div class="feature">100% anónimo</div>
+    </div>
+
+    <p style="text-align:center; color: #666; font-size: 13px; line-height: 1.4; padding: 0 10px;">
+        🔒 Cobrança discreta • Não aparece o nome do site no extrato bancário
+    </p>
+
+    <div class="footer">
+        © 2026 Exclusive Content. Todos os direitos reservados.
+    </div>
+
+</div>
+
+</body>
+</html>
