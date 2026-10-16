@@ -57,7 +57,6 @@
     <style>
         /* =====================================================================
    IMAGENS: pasta /imagens  (poster.jpg, crianca.jpg, situacao-1.jpg, situacao-2.jpg)
-   VÍDEO:   pasta /videos   (hero.mp4, hero-mobile.mp4)
    ===================================================================== */
 
         :root {
@@ -251,174 +250,13 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: 62%;
+            width: 50%;
             background: #0e0e10;
-            overflow: hidden
-        }
-
-        .hero-poster {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 22%
-        }
-
-        .hero-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #0e0e10;
-            opacity: 0;
-            transition: opacity .5s ease
-        }
-
-        .hero-video.on {
-            opacity: 1
-        }
-
-        /* ---------- Botão grande de PLAY no meio do vídeo ---------- */
-
-        .play-big {
-            position: absolute;
-            z-index: 4;
-            right: 31%;
-            top: 50%;
-            transform: translate(50%, -50%);
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 14px;
-            background: none;
-            border: 0;
-            padding: 0;
-            cursor: pointer;
-            color: #fff;
-            font: inherit;
-            -webkit-tap-highlight-color: transparent
-        }
-
-        .play-big .disc {
-            position: relative;
-            display: grid;
-            place-items: center;
-            width: 108px;
-            height: 108px;
-            border-radius: 50%;
-            background: linear-gradient(180deg, #ff5252, var(--red) 60%, var(--red-dark));
-            box-shadow: 0 12px 36px rgba(0, 0, 0, .6), inset 0 2px 0 rgba(255, 255, 255, .3);
-            transition: transform .15s ease
-        }
-
-        .play-big .disc::before,
-        .play-big .disc::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 90, 90, .75);
-            animation: ring 2s ease-out infinite
-        }
-
-        .play-big .disc::after {
-            animation-delay: 1s
-        }
-
-        .play-big:hover .disc {
-            transform: scale(1.07)
-        }
-
-        .play-big:active .disc {
-            transform: scale(.96)
-        }
-
-        .play-big .disc svg {
-            width: 46px;
-            height: 46px;
-            margin-left: 7px
-        }
-
-        .play-big .lbl {
-            font-weight: 800;
-            font-size: 15px;
-            letter-spacing: .05em;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.25;
-            background: rgba(0, 0, 0, .55);
-            padding: 9px 16px;
-            border-radius: 14px;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, .8)
-        }
-
-        .play-big .lbl small {
-            display: block;
-            font-size: 12.5px;
-            font-weight: 600;
-            letter-spacing: .02em;
-            text-transform: none;
-            opacity: .92
-        }
-
-        .play-big.loading .disc::before,
-        .play-big.loading .disc::after {
-            animation: none;
-            opacity: 0
-        }
-
-        .play-big.loading .disc svg {
-            animation: blink 1s ease-in-out infinite
-        }
-
-        .hero.playing .play-big {
-            display: none
-        }
-
-        .hero.playing .hand {
-            display: none
-        }
-
-        @keyframes ring {
-            0% {
-                transform: scale(1);
-                opacity: .9
-            }
-            100% {
-                transform: scale(1.75);
-                opacity: 0
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: .35
-            }
-        }
-
-        @media (prefers-reduced-motion:reduce) {
-            .play-big .disc::before,
-            .play-big .disc::after {
-                animation: none;
-                opacity: 0
-            }
-        }
-
-        /* cliques passam pelas camadas de texto até ao vídeo (controlos) */
-
-        .nav,
-        .hero-inner,
-        .hand {
-            pointer-events: none
-        }
-
-        .nav a,
-        .hero-inner a,
-        .hero-inner button,
-        .play-big {
-            pointer-events: auto
+            justify-content: center;
+            padding: 20px;
         }
 
         .hero::after {
@@ -426,7 +264,7 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            background: linear-gradient(90deg, #0e0e10 0%, #0e0e10 34%, rgba(14, 14, 16, .78) 52%, rgba(14, 14, 16, 0) 78%)
+            background: linear-gradient(90deg, #0e0e10 0%, #0e0e10 40%, rgba(14, 14, 16, .78) 60%, rgba(14, 14, 16, 0) 85%)
         }
 
         .nav {
@@ -489,7 +327,7 @@
             position: relative;
             z-index: 3;
             padding: 62px 0 70px;
-            max-width: 470px
+            max-width: 520px
         }
 
         .kicker {
@@ -517,13 +355,13 @@
             font-size: 16.5px;
             color: #f1f1f4;
             margin: 0 0 30px;
-            max-width: 400px
+            max-width: 460px
         }
 
         .hand {
             position: absolute;
             z-index: 3;
-            right: 5%;
+            right: 42%;
             top: 34%;
             font-family: Caveat, "Segoe Script", cursive;
             font-size: 34px;
@@ -1342,39 +1180,23 @@
                 min-height: 0
             }
             .hero-photo {
+                position: relative;
                 width: 100%;
-                height: 56%;
-                bottom: auto
-            }
-            .hero-poster {
-                object-position: 50% 18%
-            }
-            .play-big {
-                right: 50%;
-                top: 28%
-            }
-            .play-big .disc {
-                width: 96px;
-                height: 96px
-            }
-            .play-big .disc svg {
-                width: 40px;
-                height: 40px
-            }
-            .play-big .lbl {
-                font-size: 14px
+                height: auto;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                padding: 16px 20px 0;
+                background: #0e0e10;
             }
             .hand {
                 top: 84px
             }
-            .hero.playing::after {
-                opacity: 0
-            }
             .hero::after {
-                background: linear-gradient(180deg, rgba(14, 14, 16, .1) 0%, rgba(14, 14, 16, .6) 30%, #0e0e10 50%)
+                display: none;
             }
             .hero-inner {
-                padding: 260px 0 44px;
+                padding: 30px 0 44px;
                 max-width: none
             }
             .hand {
@@ -1450,15 +1272,6 @@
 </svg>
 
     <header class="hero" id="inicio">
-        <!-- HERO: poster + botão grande de play; o vídeo (4 min, com som) começa ao tocar -->
-        <div class="hero-photo">
-            <img class="hero-poster" src="imagens/img1.png" alt="Criança sentada ao colo da mãe, a precisar de ajuda" width="1280" height="720" fetchpriority="high" decoding="async">
-            <video class="hero-video" id="hero-video" playsinline preload="none" controlsList="nodownload" data-src="videos/video-ana.mp4"></video>
-        </div>
-        <button type="button" class="play-big" id="play-big" aria-label="Assistir ao vídeo com som">
-    <span class="disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 3.5v17l14-8.500z"/></svg></span>
-    <span class="lbl" id="play-lbl">Assistir ao vídeo<small></small></span>
-  </button>
         <div class="wrap">
             <nav class="nav" aria-label="Principal">
                 <a class="brand" href="#inicio"><svg><use href="#logo"/></svg><span><b>JUNTOS</b><small>Por um amanhã melhor</small></span></a>
@@ -1482,6 +1295,12 @@
                     e simples. Cada pessoa decide quanto deseja doar</div>
             </div>
         </div>
+
+        <!-- HERO VSL DO VTURB -->
+        <div class="hero-photo">
+            <vturb-smartplayer id="vid-6ad29754e176479324cc55f1" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/2032284b-8ea9-43ac-b7c5-3d37319d8075/players/6ad29754e176479324cc55f1/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+        </div>
+
         <div class="hand" aria-hidden="true">Toda ajuda<br>faz a diferença.
             <svg viewBox="0 0 110 28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M2 20h36M72 20h36"/><path d="M55 25s-9-6-9-12c0-3 2-4.500 4-4.500 2.500 0 4 2 5 3.500 1-1.500 2.500-3.500 5-3.500 2 0 4 1.500 4 4.500 0 6-9 12-9 12Z"/></svg>
         </div>
@@ -1491,8 +1310,6 @@
         <div class="wrap story-grid">
             <div class="story-photo"><img src="imagens/retrato.png" alt="Retrato da criança" loading="lazy" decoding="async"></div>
             <div>
-
-
                 <p>⚠️ CAMPANHA DE EMERGÊNCIA: Faltam apenas 13.660 MT para comprar a medicação da Ana. O tempo está a esgotar-se.</p>
             </div>
             <div class="quote">
@@ -1673,9 +1490,9 @@
 
     <script>
         /* ============================================================
-           1) DADOS DA CAMPANHA  (edite aqui)
-           Atualize "raised" só depois de verificar manualmente as transferências.
-           ============================================================ */
+            1) DADOS DA CAMPANHA  (edite aqui)
+            Atualize "raised" só depois de verificar manualmente as transferências.
+            ============================================================ */
         var CAMPAIGN = {
             goal: 19000,
             raised: 5340
@@ -1712,11 +1529,11 @@
             "use strict";
 
             /* ============================================================
-               2) META TRACKING
-               Nunca enviamos números, NIB, nomes, comprovativos ou dados
-               pessoais. Só método (mpesa/emola/banco/outro/whatsapp),
-               localização do botão e origem (UTM).
-               ============================================================ */
+                2) META TRACKING
+                Nunca enviamos números, NIB, nomes, comprovativos ou dados
+                pessoais. Só método (mpesa/emola/banco/outro/whatsapp),
+                localização do botão e origem (UTM).
+                ============================================================ */
             var CFG = window.CONFIG || {};
             var pixelOn = !!window.__metaPixelOn;
             var utm = {};
@@ -1866,8 +1683,8 @@
             })();
 
             /* ============================================================
-               3) UTILITÁRIOS
-               ============================================================ */
+                3) UTILITÁRIOS
+                ============================================================ */
             function fmt(n) {
                 return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " MT";
             }
@@ -1931,8 +1748,8 @@
             }
 
             /* ============================================================
-               4) UI: progresso da campanha (cálculos protegidos)
-               ============================================================ */
+                4) UI: progresso da campanha (cálculos protegidos)
+                ============================================================ */
             var goal = Math.max(Number(CAMPAIGN.goal) || 0, 0);
             var raised = Math.min(Math.max(Number(CAMPAIGN.raised) || 0, 0), goal);
             var pct = goal ? Math.min(100, Math.round(raised / goal * 100)) : 0;
@@ -1949,8 +1766,8 @@
             });
 
             /* ============================================================
-               5) FLUXO DE DOAÇÃO
-               ============================================================ */
+                5) FLUXO DE DOAÇÃO
+                ============================================================ */
             var pay = document.getElementById("pay");
             var thanks = document.getElementById("thanks");
             var btns = document.querySelectorAll(".m-btn");
@@ -2093,76 +1910,6 @@
             });
 
             readUTM();
-        })();
-    </script>
-
-    <!-- ============================================================
-     6) VÍDEO DO HERO: botão grande de play no meio.
-     Ao tocar: o vídeo começa do início, com som e controlos.
-     O ficheiro só é preparado depois da página carregar (não atrasa o site).
-     ============================================================ -->
-    <script>
-        (function() {
-            var v = document.getElementById("hero-video");
-            var b = document.getElementById("play-big");
-            var lbl = document.getElementById("play-lbl");
-            var hero = document.getElementById("inicio");
-            if (!v || !b) return;
-            var c = navigator.connection || {};
-            var slow = c.saveData || /2g/.test(c.effectiveType || "");
-            var sent = false;
-            var LBL = 'Assistir ao vídeo<small>com som · 4 min</small>';
-
-            /* depois da página carregar, prepara só o início do vídeo (metadados) */
-            function prep() {
-                if (slow || v.src) return;
-                v.preload = "metadata";
-                v.src = v.dataset.src;
-            }
-            if (document.readyState === "complete") setTimeout(prep, 200);
-            else window.addEventListener("load", function() {
-                setTimeout(prep, 200);
-            });
-
-            b.addEventListener("click", function() {
-                if (!v.src) v.src = v.dataset.src;
-                v.muted = false;
-                v.volume = 1;
-                v.setAttribute("controls", "");
-                b.classList.add("loading");
-                lbl.innerHTML = 'A carregar…';
-                var p = v.play();
-                if (p && p.catch) p.catch(function() {
-                    b.classList.remove("loading");
-                    lbl.innerHTML = LBL;
-                });
-            });
-
-            v.addEventListener("playing", function() {
-                v.classList.add("on");
-                hero.classList.add("playing");
-                b.classList.remove("loading");
-                lbl.innerHTML = LBL;
-                if (!sent) {
-                    sent = true;
-                    try {
-                        if (window.fbq) window.fbq("trackCustom", "VideoPlay", {
-                            video: "hero_4min"
-                        });
-                    } catch (e) {}
-                }
-            });
-            v.addEventListener("ended", function() {
-                hero.classList.remove("playing");
-                v.classList.remove("on");
-                v.currentTime = 0;
-                v.removeAttribute("controls");
-                lbl.innerHTML = 'Ver de novo<small>com som · 4 min</small>';
-            });
-            v.addEventListener("error", function() {
-                b.classList.remove("loading");
-                lbl.innerHTML = 'Não foi possível carregar<small>Toque para tentar de novo</small>';
-            });
         })();
     </script>
 </body>
