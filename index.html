@@ -49,16 +49,12 @@
         })();
     </script>
 
-    <!-- Poster do hero: carrega logo no início (troque pelo nome real do ficheiro) -->
-    <link rel="preload" as="image" href="imagens/img1.png" fetchpriority="high">
+    <!-- Poster do hero: carrega logo no início -->
+    <link rel="preload" as="image" href="https://i.ibb.co/Y76MKMk9/img1.png" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* =====================================================================
-   IMAGENS: pasta /imagens  (poster.jpg, crianca.jpg, situacao-1.jpg, situacao-2.jpg)
-   ===================================================================== */
-
         :root {
             --red: #ef3b3b;
             --red-dark: #d12a2e;
@@ -1308,7 +1304,7 @@
 
     <section class="story" id="sobre">
         <div class="wrap story-grid">
-            <div class="story-photo"><img src="imagens/retrato.png" alt="Retrato da criança" loading="lazy" decoding="async"></div>
+            <div class="story-photo"><img src="https://i.ibb.co/pBSXCscv/retrato.png" alt="Retrato da criança" loading="lazy" decoding="async"></div>
             <div>
                 <p>⚠️ CAMPANHA DE EMERGÊNCIA: Faltam apenas 13.660 MT para comprar a medicação da Ana. O tempo está a esgotar-se.</p>
             </div>
@@ -1323,8 +1319,8 @@
     <section class="sit" id="situacao">
         <div class="wrap sit-grid">
             <div class="sit-photos">
-                <img src="imagens/img1.png" width="566" height="1054" loading="lazy" decoding="async" alt="Pernas da criança com feridas e manchas na pele">
-                <img src="imagens/img2.png" width="593" height="1030" loading="lazy" decoding="async" alt="Criança com feridas e manchas na pele do rosto e dos braços">
+                <img src="https://i.ibb.co/Y76MKMk9/img1.png" width="566" height="1054" loading="lazy" decoding="async" alt="Pernas da criança com feridas e manchas na pele">
+                <img src="https://i.ibb.co/3m0L05Rw/img2.png" width="593" height="1030" loading="lazy" decoding="async" alt="Criança com feridas e manchas na pele do rosto e dos braços">
             </div>
             <div>
                 <p class="eyebrow">Situação atual</p>
@@ -1489,10 +1485,6 @@
     </footer>
 
     <script>
-        /* ============================================================
-            1) DADOS DA CAMPANHA  (edite aqui)
-            Atualize "raised" só depois de verificar manualmente as transferências.
-            ============================================================ */
         var CAMPAIGN = {
             goal: 19000,
             raised: 5340
@@ -1528,18 +1520,12 @@
         (function() {
             "use strict";
 
-            /* ============================================================
-                2) META TRACKING
-                Nunca enviamos números, NIB, nomes, comprovativos ou dados
-                pessoais. Só método (mpesa/emola/banco/outro/whatsapp),
-                localização do botão e origem (UTM).
-                ============================================================ */
             var CFG = window.CONFIG || {};
             var pixelOn = !!window.__metaPixelOn;
             var utm = {};
             var lastFire = {};
-            var currentMethod = null; // método atualmente aberto
-            var lastUserMethod = null; // último método clicado pelo utilizador
+            var currentMethod = null;
+            var lastUserMethod = null;
 
             function throttle(key, ms) {
                 var n = Date.now();
@@ -1648,7 +1634,6 @@
                 }), false);
             }
 
-            /* ViewContent: uma vez, quando a história fica visível */
             (function() {
                 var done = false;
 
@@ -1682,9 +1667,6 @@
                 }
             })();
 
-            /* ============================================================
-                3) UTILITÁRIOS
-                ============================================================ */
             function fmt(n) {
                 return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " MT";
             }
@@ -1747,9 +1729,6 @@
                 } catch (e) {}
             }
 
-            /* ============================================================
-                4) UI: progresso da campanha (cálculos protegidos)
-                ============================================================ */
             var goal = Math.max(Number(CAMPAIGN.goal) || 0, 0);
             var raised = Math.min(Math.max(Number(CAMPAIGN.raised) || 0, 0), goal);
             var pct = goal ? Math.min(100, Math.round(raised / goal * 100)) : 0;
@@ -1765,9 +1744,6 @@
                 }, 250);
             });
 
-            /* ============================================================
-                5) FLUXO DE DOAÇÃO
-                ============================================================ */
             var pay = document.getElementById("pay");
             var thanks = document.getElementById("thanks");
             var btns = document.querySelectorAll(".m-btn");
@@ -1839,7 +1815,6 @@
                 s.textContent = d.name + " · Obrigado pela sua generosidade.";
                 pay.appendChild(s);
 
-                /* Confirmação declarada pelo utilizador */
                 var conf = document.createElement("div");
                 conf.className = "confirm";
                 var cp = document.createElement("p");
@@ -1887,7 +1862,6 @@
                 });
             });
 
-            /* CTAs "Quero ajudar" (topo e final) */
             document.querySelectorAll("[data-go]").forEach(function(a) {
                 a.addEventListener("click", function() {
                     trackDonationIntent(a.getAttribute("data-loc") || "desconhecido");
@@ -1897,7 +1871,6 @@
                 });
             });
 
-            /* Links WhatsApp: rodapé + dinâmicos (delegação) */
             var waFooter = document.getElementById("wa-footer");
             if (waFooter) {
                 waFooter.href = waLink("Olá! Vi a campanha e gostaria de falar com a equipa.");
