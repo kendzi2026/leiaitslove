@@ -1493,14 +1493,14 @@
             mpesa: {
                 title: "Doar por M-Pesa",
                 text: "Envie a sua doação para o número abaixo e guarde o comprovativo.",
-                value: "850618807",
-                name: "Nome do titular: ESMENIA"
+                value: "847837309",
+                name: "Nome do titular: Derson"
             },
             emola: {
                 title: "Doar por e-Mola",
                 text: "Envie a sua doação para o número abaixo e guarde o comprovativo.",
-                value: "879858725",
-                name: "Nome do titular: SHELTON"
+                value: "862020682",
+                name: "Nome do titular: Johane"
             },
             banco: {
                 title: "Transferência bancária",
@@ -1512,8 +1512,8 @@
             outro: {
                 title: "Outro método",
                 text: "Fale connosco no WhatsApp e combinamos a melhor forma de ajudar.",
-                value: "+258850618807",
-                name: "Contacto da campanha: ESMENIA "
+                value: "+258847837309",
+                name: "Contacto da campanha: Derson"
             }
         };
 
@@ -1695,196 +1695,4 @@
                             var ta = document.createElement("textarea");
                             ta.value = text;
                             ta.setAttribute("readonly", "");
-                            ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px";
-                            document.body.appendChild(ta);
-                            ta.focus();
-                            ta.select();
-                            try {
-                                ta.setSelectionRange(0, text.length);
-                            } catch (e) {}
-                            var ok = document.execCommand("copy");
-                            document.body.removeChild(ta);
-                            ok ? resolve() : reject();
-                        } catch (e) {
-                            reject(e);
-                        }
-                    }
-                    try {
-                        if (navigator.clipboard && window.isSecureContext) {
-                            navigator.clipboard.writeText(text).then(resolve, fallback);
-                        } else fallback();
-                    } catch (e) {
-                        fallback();
-                    }
-                });
-            }
-
-            function selectNode(node) {
-                try {
-                    var r = document.createRange();
-                    r.selectNodeContents(node);
-                    var s = window.getSelection();
-                    s.removeAllRanges();
-                    s.addRange(r);
-                } catch (e) {}
-            }
-
-            var goal = Math.max(Number(CAMPAIGN.goal) || 0, 0);
-            var raised = Math.min(Math.max(Number(CAMPAIGN.raised) || 0, 0), goal);
-            var pct = goal ? Math.min(100, Math.round(raised / goal * 100)) : 0;
-            document.getElementById("goal").textContent = fmt(goal);
-            document.getElementById("raised").textContent = fmt(raised);
-            document.getElementById("left").textContent = fmt(goal - raised);
-            document.getElementById("pct").textContent = pct + "%";
-            document.querySelector(".bar").setAttribute("aria-valuenow", pct);
-            var fill = document.getElementById("fill");
-            requestAnimationFrame(function() {
-                setTimeout(function() {
-                    fill.style.width = pct + "%";
-                }, 250);
-            });
-
-            var pay = document.getElementById("pay");
-            var thanks = document.getElementById("thanks");
-            var btns = document.querySelectorAll(".m-btn");
-
-            function waAnchor(href, loc, label) {
-                var a = document.createElement("a");
-                a.className = "btn-wa";
-                a.href = href;
-                a.target = "_blank";
-                a.rel = "noopener noreferrer";
-                a.setAttribute("data-wa", "");
-                a.setAttribute("data-loc", loc);
-                a.innerHTML = '<svg aria-hidden="true"><use href="#wa"/></svg>';
-                a.appendChild(document.createTextNode(label));
-                return a;
-            }
-
-            function show(k) {
-                var d = PAY[k];
-                if (!d) return;
-                currentMethod = k;
-                thanks.classList.remove("show");
-                btns.forEach(function(b) {
-                    b.setAttribute("aria-pressed", b.dataset.m === k ? "true" : "false");
-                });
-                pay.innerHTML = "";
-
-                var h = document.createElement("h3");
-                h.textContent = d.title;
-                var p = document.createElement("p");
-                p.textContent = d.text;
-                var row = document.createElement("div");
-                row.className = "copy-row";
-                var c = document.createElement("code");
-                c.textContent = d.value;
-                var b = document.createElement("button");
-                b.type = "button";
-                b.textContent = "Copiar";
-                b.addEventListener("click", function() {
-                    trackCopy(k);
-                    copyText(d.copy || d.value).then(function() {
-                        b.textContent = "Copiado!";
-                        setTimeout(function() {
-                            b.textContent = "Copiar";
-                        }, 1800);
-                    }, function() {
-                        selectNode(c);
-                        b.textContent = "Selecione e copie";
-                        setTimeout(function() {
-                            b.textContent = "Copiar";
-                        }, 2500);
-                    });
-                });
-                row.appendChild(c);
-                row.appendChild(b);
-
-                pay.appendChild(h);
-                pay.appendChild(p);
-                pay.appendChild(row);
-
-                if (k === "outro") {
-                    var acts = document.createElement("div");
-                    acts.className = "pay-actions";
-                    acts.appendChild(waAnchor(waLink("Olá! Gostaria de ajudar a campanha. Pode indicar-me a melhor forma de doar?"), "outro_method", "Falar no WhatsApp"));
-                    pay.appendChild(acts);
-                }
-
-                var s = document.createElement("small");
-                s.textContent = d.name + " · Obrigado pela sua generosidade.";
-                pay.appendChild(s);
-
-                var conf = document.createElement("div");
-                conf.className = "confirm";
-                var cp = document.createElement("p");
-                cp.textContent = "Já fez a transferência na sua app? Avise-nos:";
-                var cb = document.createElement("button");
-                cb.type = "button";
-                cb.className = "btn-confirm";
-                cb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.500l4.500 4.500L19 7.500"/></svg>';
-                cb.appendChild(document.createTextNode("Já fiz a minha doação"));
-                cb.addEventListener("click", function() {
-                    confirmDonation(k);
-                });
-                var cs = document.createElement("small");
-                cs.textContent = "Isto é só um aviso seu e não significa que o pagamento já foi verificado. A nossa equipa confirma o recebimento.";
-                conf.appendChild(cp);
-                conf.appendChild(cb);
-                conf.appendChild(cs);
-                pay.appendChild(conf);
-
-                pay.classList.add("show");
-            }
-
-            function confirmDonation(k) {
-                trackDonateConfirmation(k);
-                var wa = document.getElementById("wa-thanks");
-                wa.href = waLink("Olá! Acabei de fazer a minha doação via " + methodLabel(k) + ". Segue o comprovativo.");
-                thanks.classList.add("show");
-                try {
-                    thanks.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-                    thanks.focus({
-                        preventScroll: true
-                    });
-                } catch (e) {}
-            }
-
-            btns.forEach(function(b) {
-                b.addEventListener("click", function() {
-                    var k = b.dataset.m;
-                    show(k);
-                    lastUserMethod = k;
-                    trackMethodSelection(k);
-                });
-            });
-
-            document.querySelectorAll("[data-go]").forEach(function(a) {
-                a.addEventListener("click", function() {
-                    trackDonationIntent(a.getAttribute("data-loc") || "desconhecido");
-                    if (!pay.classList.contains("show")) setTimeout(function() {
-                        show("mpesa");
-                    }, 400);
-                });
-            });
-
-            var waFooter = document.getElementById("wa-footer");
-            if (waFooter) {
-                waFooter.href = waLink("Olá! Vi a campanha e gostaria de falar com a equipa.");
-                waFooter.target = "_blank";
-                waFooter.rel = "noopener noreferrer";
-            }
-            document.addEventListener("click", function(e) {
-                var a = e.target.closest ? e.target.closest("a[data-wa]") : null;
-                if (a) trackContact(a.getAttribute("data-loc") || "desconhecido");
-            });
-
-            readUTM();
-        })();
-    </script>
-</body>
-
-</html>
+                            ta.style.cssText = "position:fixed;top:0;left
